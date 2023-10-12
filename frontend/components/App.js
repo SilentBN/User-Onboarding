@@ -32,10 +32,10 @@ const getInitialValue = () => ({
 });
 
 const getInitialErrors = () => ({
-  username: "zz",
-  favLanguage: "",
-  favFood: "",
-  agreement: "",
+  username: "11",
+  favLanguage: "qq",
+  favFood: "aaaa",
+  agreement: "aa",
 }); // This should be a dictionary of error messages.
 
 export default function App() {
@@ -45,8 +45,8 @@ export default function App() {
   // and (5) the failure message from the server.
   const [value, setValue] = useState(getInitialValue()); // This should be a dictionary of form values.
   const [errors, setErrors] = useState(getInitialErrors()); // This should be a dictionary of error messages.
-  const [serverSuccess, setServerSuccess] = useState(""); // This should be a string.
-  const [serverFailure, setServerFailure] = useState(""); // This should be a string.
+  const [serverSuccess, setServerSuccess] = useState("qq"); // This should be a string.
+  const [serverFailure, setServerFailure] = useState("qq"); // This should be a string.
 
   // ✨ TASK: BUILD YOUR EFFECT HERE
   // Whenever the state of the form changes, validate it against the schema
@@ -75,10 +75,8 @@ export default function App() {
       {/* TASK: COMPLETE THE JSX */}
       <h2>Create an Account</h2>
       <form onSubmit={onSubmit}>
-        {serverSuccess && (
-          <h4 className="success">Success! Welcome, new user!</h4>
-        )}
-        {serverFailure && <h4 className="error">Sorry! Username is taken</h4>}
+        {serverSuccess && <h4 className="success">{serverSuccess}</h4>}
+        {serverFailure && <h4 className="error">{serverFailure}</h4>}
 
         <div className="inputGroup">
           <label htmlFor="username">Username:</label>
@@ -88,7 +86,9 @@ export default function App() {
             type="text"
             placeholder="Type Username"
           />
-          <div className="validation">username is required</div>
+          {errors.username && (
+            <div className="validation">{errors.username}</div>
+          )}
         </div>
 
         <div className="inputGroup">
@@ -103,7 +103,9 @@ export default function App() {
               Rust
             </label>
           </fieldset>
-          <div className="validation">favLanguage is required</div>
+          {errors.favLanguage && (
+            <div className="validation">{errors.favLanguage}</div>
+          )}
         </div>
 
         <div className="inputGroup">
@@ -114,7 +116,7 @@ export default function App() {
             <option value="spaghetti">Spaghetti</option>
             <option value="broccoli">Broccoli</option>
           </select>
-          <div className="validation">favFood is required</div>
+          {errors.favFood && <div className="validation">{errors.favFood}</div>}
         </div>
 
         <div className="inputGroup">
@@ -122,7 +124,9 @@ export default function App() {
             <input id="agreement" type="checkbox" name="agreement" />
             Agree to our terms
           </label>
-          <div className="validation">agreement is required</div>
+          {errors.agreement && (
+            <div className="validation">{errors.agreement}</div>
+          )}
         </div>
 
         <div>
