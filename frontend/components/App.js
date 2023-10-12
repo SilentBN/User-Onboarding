@@ -24,6 +24,27 @@ const e = {
 // ✨ TASK: BUILD YOUR FORM SCHEMA HERE
 // The schema should use the error messages contained in the object above.
 
+const formSchema = yup.object().shape({
+  username: yup
+    .string()
+    .required(e.usernameRequired)
+    .min(3, e.usernameMin)
+    .max(20, e.usernameMax),
+  favLanguage: yup
+    .string()
+    .required(e.favLanguageRequired)
+    .oneOf(["javascript", "rust"], e.favLanguageOptions),
+  favFood: yup
+    .string()
+    .required(e.favFoodRequired)
+    .oneOf(["broccoli", "spaghetti", "pizza"], e.favFoodOptions),
+  agreement: yup
+    .boolean()
+    .required(e.agreementRequired)
+    .oneOf([true], e.agreementOptions),
+});
+
+// Initial values for the form fields.
 const getInitialValue = () => ({
   username: "",
   favLanguage: "",
@@ -47,10 +68,16 @@ export default function App() {
   const [errors, setErrors] = useState(getInitialErrors()); // This should be a dictionary of error messages.
   const [serverSuccess, setServerSuccess] = useState(""); // This should be a string.
   const [serverFailure, setServerFailure] = useState(""); // This should be a string.
+  const [disabled, setDisabled] = useState(false); // This should be a boolean.
 
   // ✨ TASK: BUILD YOUR EFFECT HERE
   // Whenever the state of the form changes, validate it against the schema
   // and update the state that tracks whether the form is submittable.
+  useEffect(() => {
+    formSchema.isValid(values).then((valid) => {
+      setDisabled(valid);
+    });
+  }, [values]);
 
   const onChange = (evt) => {
     // ✨ TASK: IMPLEMENT YOUR INPUT CHANGE HANDLER
@@ -61,6 +88,15 @@ export default function App() {
     let { name, value, type, checked } = evt.target;
     value = type === "checkbox" ? checked : value;
     setValues({ ...values, [name]: value });
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then(() => {
+        setErrors({ ...errors, [name]: "" });
+      })
+      .catch((err) => {
+        setErrors({ ...errors, [name]: err.errors[0] });
+      });
   };
 
   const onSubmit = (evt) => {
@@ -70,6 +106,16 @@ export default function App() {
     // the form. You must put the success and failure messages from the server
     // in the states you have reserved for them, and the form
     // should be re-enabled.
+    evt.preventDefault();
+    axios
+      .post("https://webapis.bloomtechdev.com/registration", values)
+      .then((res) => {
+        setServerSuccess(res.data.message);
+        setValues(getInitialValue());
+      })
+      .catch((err) => {
+        setServerFailure(err.response.data.message);
+      });
   };
 
   return (
@@ -158,7 +204,7 @@ export default function App() {
         </div>
 
         <div>
-          <input type="submit" disabled={false} />
+          <input type="submit" disabled={!disabled} />
         </div>
       </form>
     </div>
