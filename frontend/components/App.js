@@ -58,6 +58,9 @@ export default function App() {
     // whether the type of event target is "checkbox" and act accordingly.
     // At every change, you should validate the updated value and send the validation
     // error to the state where we track frontend validation errors.
+    let { name, value, type, checked } = evt.target;
+    value = type === "checkbox" ? checked : value;
+    setValues({ ...values, [name]: value });
   };
 
   const onSubmit = (evt) => {
