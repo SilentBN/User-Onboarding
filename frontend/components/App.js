@@ -32,10 +32,10 @@ const getInitialValue = () => ({
 });
 
 const getInitialErrors = () => ({
-  username: "11",
-  favLanguage: "qq",
-  favFood: "aaaa",
-  agreement: "aa",
+  username: "",
+  favLanguage: "",
+  favFood: "",
+  agreement: "",
 }); // This should be a dictionary of error messages.
 
 export default function App() {
@@ -43,10 +43,10 @@ export default function App() {
   // You will need states to track (1) the form, (2) the validation errors,
   // (3) whether submit is disabled, (4) the success message from the server,
   // and (5) the failure message from the server.
-  const [value, setValue] = useState(getInitialValue()); // This should be a dictionary of form values.
+  const [values, setValues] = useState(getInitialValue()); // This should be a dictionary of form values.
   const [errors, setErrors] = useState(getInitialErrors()); // This should be a dictionary of error messages.
-  const [serverSuccess, setServerSuccess] = useState("qq"); // This should be a string.
-  const [serverFailure, setServerFailure] = useState("qq"); // This should be a string.
+  const [serverSuccess, setServerSuccess] = useState(""); // This should be a string.
+  const [serverFailure, setServerFailure] = useState(""); // This should be a string.
 
   // ✨ TASK: BUILD YOUR EFFECT HERE
   // Whenever the state of the form changes, validate it against the schema
@@ -81,6 +81,8 @@ export default function App() {
         <div className="inputGroup">
           <label htmlFor="username">Username:</label>
           <input
+            value={values.username}
+            onChange={onChange}
             id="username"
             name="username"
             type="text"
@@ -95,11 +97,23 @@ export default function App() {
           <fieldset>
             <legend>Favorite Language:</legend>
             <label>
-              <input type="radio" name="favLanguage" value="javascript" />
+              <input
+                checked={values.favLanguage == "javascript"}
+                onChange={onChange}
+                type="radio"
+                name="favLanguage"
+                value="javascript"
+              />
               JavaScript
             </label>
             <label>
-              <input type="radio" name="favLanguage" value="rust" />
+              <input
+                checked={values.favLanguage == "rust"}
+                onChange={onChange}
+                type="radio"
+                name="favLanguage"
+                value="rust"
+              />
               Rust
             </label>
           </fieldset>
@@ -110,7 +124,12 @@ export default function App() {
 
         <div className="inputGroup">
           <label htmlFor="favFood">Favorite Food:</label>
-          <select id="favFood" name="favFood">
+          <select
+            value={values.favFood}
+            onChange={onChange}
+            id="favFood"
+            name="favFood"
+          >
             <option value="">-- Select Favorite Food --</option>
             <option value="pizza">Pizza</option>
             <option value="spaghetti">Spaghetti</option>
@@ -121,7 +140,13 @@ export default function App() {
 
         <div className="inputGroup">
           <label>
-            <input id="agreement" type="checkbox" name="agreement" />
+            <input
+              onChange={onChange}
+              checked={values.agreement}
+              id="agreement"
+              type="checkbox"
+              name="agreement"
+            />
             Agree to our terms
           </label>
           {errors.agreement && (
