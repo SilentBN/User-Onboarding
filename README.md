@@ -111,8 +111,9 @@ Delete the contents of `App.js` and challenge yourself to rebuild this form with
 #### 👉 Cypress-Testing TASK 1 - Set up Project
 
 This project is a continuation of the work you have done previously.
-[x] CD into your old project
-[x] Continue to make changes and push to the same branch
+
+- [x] CD into your old project
+- [x] Continue to make changes and push to the same branch
 
 For cypress setup run npm install cypress --save-dev and then npx cypress open. That will open up a dialogue that has a Welcome to Cypress 10! banner and a button below that says Continue to Cypress 10. Click that button, then scroll down to the bottom of the next screen and click the three migrate buttons one after the other (after clicking one the next section will expand and allow you to click the next migrate selection). On the next screen select the e2e option and on the next screen select the Scaffold Example Specs option, then select a browser of your choice and click the Start E2E Testing button.
 
@@ -123,13 +124,14 @@ From there, in your newly created cypress folder in VSCode, navigate to the e2e 
 In order to complete this challenge you will need to write and run the following tests. They do not need to pass, so long as the reasons they are failing is legitimate.
 
 Set up tests that will...
-[x] Get the Name input and type a name in it.
-[x] Use an assertion to check if the text inputted contains the name you provided (Hint: use the .should assertion)
-[x] Get the Email input and type an email address in it
-[x] Get the password input and type a password in it
-[x] Set up a test that will check to see if a user can check the terms of service box
-[x] Check to see if a user can submit the form data
-[x] Check for form validation if an input is left empty
+
+- [x] Get the Name input and type a name in it.
+- [x] Use an assertion to check if the text inputted contains the name you provided (Hint: use the .should assertion)
+- [x] Get the Email input and type an email address in it
+- [x] Get the password input and type a password in it
+- [x] Set up a test that will check to see if a user can check the terms of service box
+- [x] Check to see if a user can submit the form data
+- [x] Check for form validation if an input is left empty
 
 #### 👉 Cypress-Testing Task 3: Stretch Goals
 
