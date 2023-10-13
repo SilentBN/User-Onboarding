@@ -24,10 +24,10 @@ From the point of view of the data, each user registration POSTed to the endpoin
 
 ```js
 {
-  "username": "Luke", 
-  "favFood": "pizza", 
-  "favLanguage": "javascript", 
-  "agreement": true 
+  "username": "Luke",
+  "favFood": "pizza",
+  "favLanguage": "javascript",
+  "agreement": true
 }
 // ❗ Note that even if the payload passes validation, the server may reject the request if the username already exists
 ```
@@ -107,6 +107,33 @@ The form should be fully functional now!
 #### 👉 TASK 3 - (OPTIONAL) Start over from scratch
 
 Delete the contents of `App.js` and challenge yourself to rebuild this form without help. If you decide to skip this task for now, we recommend revisiting it in the future. Consider this task a [Kata](https://en.wikipedia.org/wiki/Kata) you should master before applying for a React position.
+
+#### 👉 Cypress-Testing TASK 1 - Set up Project
+
+This project is a continuation of the work you have done previously.
+[x] CD into your old project
+[x] Continue to make changes and push to the same branch
+
+For cypress setup run npm install cypress --save-dev and then npx cypress open. That will open up a dialogue that has a Welcome to Cypress 10! banner and a button below that says Continue to Cypress 10. Click that button, then scroll down to the bottom of the next screen and click the three migrate buttons one after the other (after clicking one the next section will expand and allow you to click the next migrate selection). On the next screen select the e2e option and on the next screen select the Scaffold Example Specs option, then select a browser of your choice and click the Start E2E Testing button.
+
+From there, in your newly created cypress folder in VSCode, navigate to the e2e folder and create a new file called form.cy.js and you're all set to write your tests! (Make sure to have the .cy in the path otherwise Cypress won't be able to find your tests!)
+
+#### 👉 Cypress-Testing TASK 2a: Write and Run Tests (MVP)
+
+In order to complete this challenge you will need to write and run the following tests. They do not need to pass, so long as the reasons they are failing is legitimate.
+
+Set up tests that will...
+[x] Get the Name input and type a name in it.
+[x] Use an assertion to check if the text inputted contains the name you provided (Hint: use the .should assertion)
+[x] Get the Email input and type an email address in it
+[x] Get the password input and type a password in it
+[x] Set up a test that will check to see if a user can check the terms of service box
+[x] Check to see if a user can submit the form data
+[x] Check for form validation if an input is left empty
+
+#### 👉 Cypress-Testing Task 3: Stretch Goals
+
+If you have time, write and run different tests based on common issues you have encountered working on this code for the past few days.
 
 ## FAQ
 

@@ -142,6 +142,28 @@ export default function App() {
           )}
         </div>
 
+        {/* TASK: Email Field */}
+        <div className="inputGroup">
+          <label htmlFor="email">Email:</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Type Email"
+          />
+        </div>
+
+        {/* TASK: Password Field */}
+        <div className="inputGroup">
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Type Password"
+          />
+        </div>
+
         <div className="inputGroup">
           <fieldset>
             <legend>Favorite Language:</legend>
