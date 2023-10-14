@@ -86,4 +86,17 @@ describe("User Registration Page", () => {
         .should("have.value", "spaghetti");
     });
   });
+
+  describe("Submitting the form", () => {
+    it("can submit the form", () => {
+      usernameInput().type("testuser");
+      passwordInput().type("testpassword");
+      emailInput().type("abc@gmail.com");
+      favLanguageInputJavascript().check();
+      cy.get("select[id=favFood]")
+        .select("pizza")
+        .should("have.value", "pizza");
+      termsCheckbox().check();
+    });
+  });
 });
